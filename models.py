@@ -1,11 +1,16 @@
-from sqlalchemy import Column, Date, ForeignKey, Integer, String
+from sqlalchemy import (
+    Column,
+    Date,
+    ForeignKey,
+    Integer,
+    String
+)
 from sqlalchemy.orm import relationship
-
 from database import Base
 
-
 class Author(Base):
-    __tablename__ = "author"
+    __tablename__ = "authors"
+
     id = Column(
         Integer,
         primary_key=True,
@@ -28,9 +33,9 @@ class Author(Base):
         cascade="all, delete"
     )
 
-
 class Book(Base):
     __tablename__ = "books"
+
     id = Column(
         Integer,
         primary_key=True,
@@ -57,5 +62,5 @@ class Book(Base):
 
     author = relationship(
         "Author",
-        back_populates="books",
+        back_populates="books"
     )
